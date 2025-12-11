@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="icon" type="image/png" href="#">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+html, body {
+    margin: 0;
+    padding: 0;
+    background: #11111b;
+    color: #ffffff;
+    font-family: Arial, Helvetica, sans-serif;
+    -webkit-tap-highlight-color: transparent;
+}
+
+* {
+    box-sizing: border-box;
+    outline: none;
+}
+
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-thumb { background: #c4a7e7; border-radius: 8px; }
+
+.nav {
+    width: 100%;
+    background: #181825;
+    padding: 12px 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+}
+
+.nav img {
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: 0.2s;
+}
+.nav img:hover { filter: brightness(10); }
+
+#menu {
+    width: 100%;
+    background: #313244;
+    position: fixed;
+    top: -100%;
+    left: 0;
+    transition: 0.35s ease;
+    padding: 0;
+    z-index: 9000;
+}
+
+.menu-inner {
+    width: 100%;
+    margin-top: 60px;
+    height: calc(100vh - 60px);
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.menu-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    font-size: 22px;
+    color: #c4a7e7;
+    margin-bottom: 20px;
+}
+
+.menu-header img {
+    width: 26px;
+    height: 26px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+.menu-header img:hover { filter: brightness(10); }
+
+.menu-options {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-grow: 1;
+}
+
+.menu-option {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 14px 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.menu-option img {
+    width: 24px;
+    height: 24px;
+    margin-right: 12px;
+    transition: 0.2s;
+}
+
+.menu-option:hover {
+    background: #c4a7e7;
+    color: #11111b;
+}
+
+.menu-option:hover img {
+    filter: brightness(10);
+}
+
+.page-wrap {
+    margin-top: 90px;
+    width: 100%;
+}
+
+.hero {
+    width: 99%;
+    margin: 30px auto;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+    background: #000000;
+}
+
+.hero img {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+    filter: brightness(0.5);
+    border-radius: 8px;
+}
+
+.hero-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.hero-content h3 { color: #c4a7e7; }
+.hero-content p {
+    margin-top: 5px;
+    margin-bottom: 15px;
+}
+
+.hero-content button {
+    background: #313244;
+    color: #ffffff;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 8px;
+    margin: 5px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+.hero-content button:hover {
+    background: #c4a7e7;
+    color: #11111b;
+}
+
+.section {
+    width: 99%;
+    background: #181825;
+    margin: 50px auto;
+    border-radius: 8px;
+    padding: 25px;
+    text-align: center;
+}
+
+.section h3 { color: #c4a7e7; }
+
+.explore-bar {
+    width: 99%;
+    background: #1e1e2e;
+    margin: 12px auto;
+    padding: 12px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.explore-left, .explore-right { display: flex; align-items: center; }
+
+.explore-left img {
+    width: 24px;
+    height: 24px;
+    margin-right: 8px;
+    transition: 0.2s;
+}
+.explore-right img {
+    width: 20px;
+    height: 20px;
+    transition: 0.2s;
+}
+
+.explore-bar:hover {
+    background: #c4a7e7;
+    color: #11111b;
+}
+.explore-bar:hover img {
+    filter: brightness(10);
+}
+
+.cards {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.card {
+    width: 32%;
+    background: #1e1e2e;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    border: 2px solid transparent;
+    transition: 0.2s;
+}
+
+.card:hover {
+    border: 2px solid #c4a7e7;
+}
+
+.card img {
+    width: 40px;
+    height: 40px;
+    transition: 0.2s;
+}
+
+.card:hover img {
+    filter: brightness(10);
+}
+
+.testimonials {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.testimonial {
+    width: 19%;
+    background: #1e1e2e;
+    border-radius: 8px;
+    padding: 20px;
+    border: 2px solid transparent;
+    transition: 0.2s;
+}
+
+.testimonial:hover {
+    border: 2px solid #c4a7e7;
+}
+
+.testimonial img {
+    width: 40px;
+    height: 40px;
+    transition: 0.2s;
+}
+
+.testimonial:hover img {
+    filter: brightness(10);
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 99%;
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    margin: 8px 0;
+    background: #1e1e2e;
+    color: #ffffff;
+}
+
+.contact-form button {
+    width: 99%;
+    background: #313244;
+    color: #ffffff;
+    padding: 12px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.contact-form button:hover {
+    background: #c4a7e7;
+    color: #11111b;
+}
+
+.contact-icons-text {
+    margin-top: 25px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: #c4a7e7;
+}
+
+.contact-icons img {
+    width: 36px;
+    height: 36px;
+    margin: 10px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.contact-icons img:hover {
+    filter: brightness(10);
+}
+
+footer {
+    width: 100%;
+    background: #181825;
+    padding: 25px 0;
+    margin-top: 50px;
+    display: flex;
+    justify-content: space-between;
+}
+
+footer img {
+    width: 25px;
+    height: 25px;
+    margin: 0 5px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+footer img:hover {
+    filter: brightness(10);
+}
+
+.footer-center {
+    width: 100%;
+    text-align: center;
+    position: absolute;
+}
+
+@media (max-width: 1000px) {
+    .cards, .testimonials {
+        flex-wrap: wrap;
+    }
+    .card, .testimonial {
+        width: 99%;
+    }
+}
+</style>
+
+<script>
+function openMenu() {
+    document.body.style.overflow = "hidden";
+    document.getElementById("menu").style.top = "0";
+}
+
+function closeMenu() {
+    document.getElementById("menu").style.top = "-100%";
+
+    setTimeout(() => {
+        document.body.style.overflow = "auto";
+    }, 350);
+}
+</script>
+</head>
+
+<body>
+
+<div class="nav">
+    <img src="https://nexusbytedev.github.io/Website/assets/media/icons/home.png" onclick="location.href='https://nexusbytedev.github.io/Website/main/landing-page.html'">
+    <img src="https://nexusbytedev.github.io/Website/assets/media/icons/search.png" onclick="location.href='https://nexusbytedev.github.io/Website/main/search.png'">
+    <img src="https://nexusbytedev.github.io/Website/assets/media/icons/account.png" onclick="location.href='https://nexusbytedev.github.io/Website/main/account/login.html'">
+    <img src="https://nexusbytedev.github.io/Website/assets/media/icons/settings.png" onclick="location.href='https://nexusbytedev.github.io/Website/main/settings/general-settings.html'">
+    <img src="https://nexusbytedev.github.io/Website/assets/media/icons/menu.png" onclick="openMenu()">
+</div>
+
+<div id="menu">
+    <div class="menu-inner">
+
+        <div class="menu-header">
+            <span>Menu</span>
+            <img src="https://nexusbytedev.github.io/Website/assets/media/icons/close.png" onclick="closeMenu()">
+        </div>
+
+        <div class="menu-options">
+
+            <div class="menu-option" onclick="location.href='https://nexusbytedev.github.io/Website/main/projects/explore-projects.html'"><img src="https://nexusbytedev.github.io/Website/assets/media/icons/projects.png"><span>Projects</span></div>
+            <div class="menu-option" onclick="location.href='https://nexusbytedev.github.io/Website/main/services/explore-services.html'"><img src="https://nexusbytedev.github.io/Website/assets/media/icons/services.png"><span>Services</span></div>
+            <div class="menu-option" onclick="location.href='https://nexusbytedev.github.io/Website/main/tools/explore-tools.html'"><img src="https://nexusbytedev.github.io/Website/assets/media/icons/tools.png"><span>Tools</span></div>
+            <div class="menu-option" onclick="location.href='https://nexusbytedev.github.io/Website/main/store/explore-store.html'"><img src="https://nexusbytedev.github.io/Website/assets/media/icons/store.png"><span>Store</span></div>
+            <div class="menu-option" onclick="location.href='https://nexusbytedev.github.io/Website/main/downloads/explore-downloads.html'"><img gsrc="https://nexusbytedev.github.io/Website/assets/media/icons/downloads.pn"><span>Downloads</span></div>
+            <div class="menu-option" onclick="location.href='https://nexusbytedev.github.io/Website/main/music/explore-music.html'"><img src="https://nexusbytedev.github.io/Website/assets/media/icons/music.png"><span>Music</span></div>
+            <div class="menu-option" onclick="location.href='https://nexusbytedev.github.io/Website/main/entertainment/explore-entertainment.html'"><img src="https://nexusbytedev.github.io/Website/assets/media/icons/entertainment.png"><span>Entertainment</span></div>
+            <div class="menu-option" onclick="location.href='https://nexusbytedev.github.io/Website/main/blog/nexusbyte-blog.html'"><img src="https://nexusbytedev.github.io/Website/assets/media/icons/blog.png"><span>Blog</span></div>
+            <div class="menu-option" onclick="location.href='https://nexusbytedev.github.io/Website/main/miscellaneous/explore-miscellaneous.html'"><img src="https://nexusbytedev.github.io/Website/assets/media/icons/miscellaneous.png"><span>Miscellaneous</span></div>
+            <div class="menu-option" onclick="location.href='https://nexusbytedev.github.io/Website/main/information/explore-information.html'"><img src="https://nexusbytedev.github.io/Website/assets/media/icons/information.png"><span>Information</span></div>
+
+        </div>
+    </div>
+</div>
+
+<div class="page-wrap">
+
+    <div class="hero">
+        <img src="https://nexusbytedev.github.io/Website/assets/media/images/hero-background.png">
+        <div class="hero-content">
+            <h3>Welcome to NexusByte Initiative</h3>
+            <p>Want to learn more about us?</p>
+            <button onclick="location.href='https://nexusbytedev.github.io/Website/main/information/about-us.html'">Learn More</button>
+            <button onclick="location.href='https://nexusbytedev.github.io/Website/main/information/explore-information.html'">Documentation</button>
+        </div>
+    </div>
+
+    <div class="section">
+        <h3>Explore</h3>
+        <div class="explore-bar" onclick="location.href='https://nexusbytedev.github.io/Website/main/entertainment/movies/explore-movies.html'">
+            <div class="explore-left"><img src="https://nexusbytedev.github.io/Website/assets/media/icons/video.png"><span>Movies</span></div>
+            <div class="explore-right"><img src="https://nexusbytedev.github.io/Website/assets/media/icons/external.png"></div>
+        </div>
+        <div class="explore-bar" onclick="location.href='https://nexusbytedev.github.io/Website/main/downloads/playstation3/explore-playstation3-downloads.html'">
+            <div class="explore-left"><img src="https://nexusbytedev.github.io/Website/assets/media/icons/playstation.png"><span>PlayStation 3</span></div>
+            <div class="explore-right"><img src="https://nexusbytedev.github.io/Website/assets/media/icons/external.png"></div>
+        </div>
+        <div class="explore-bar" onclick="location.href='https://nexusbytedev.github.io/Website/main/tools.image-studio.html'">
+            <div class="explore-left"><img src="https://nexusbytedev.github.io/Website/assets/media/icons/image.png"><span>Image Studio</span></div>
+            <div class="explore-right"><img src="https://nexusbytedev.github.io/Website/assets/media/icons/external.png"></div>
+        </div>
+            <div class="explore-bar" onclick="location.href='https://nexusbytedev.github.io/Website/main/projects/python.html'">
+            <div class="explore-left"><img src="https://nexusbytedev.github.io/Website/assets/media/icons/python.png"><span>Python Projects</span></div>
+            <div class="explore-right"><img src="https://nexusbytedev.github.io/Website/assets/media/icons/external.png"></div>
+        </div>
+            <div class="explore-bar" onclick="location.href='https://nexusbytedev.github.io/Website/main/music/explore-music.html'">
+            <div class="explore-left"><img src="https://nexusbytedev.github.io/Website/assets/media/icons/music.png"><span>Music</span></div>
+            <div class="explore-right"><img src="https://nexusbytedev.github.io/Website/assets/media/icons/external.png"></div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h3>Why we're different</h3>
+        <div class="cards">
+            <div class="card">
+                <img src="https://nexusbytedev.github.io/Website/assets/media/icons/lightning-bolt.png">
+                <h4>Optimised</h4>
+                <p>Whether you're on a smartphone or computer, our website is fast!</p>
+            </div>
+            <div class="card">
+                <img src="https://nexusbytedev.github.io/Website/assets/media/icons/plus.png">
+                <h4>Extensive</h4>
+                <p>We're constantly adding new features and content on a daily basis.</p>
+            </div>
+            <div class="card">
+                <img src="https://nexusbytedev.github.io/Website/assets/media/icons/update.png">
+                <h4>Updated</h4>
+                <p>We update content on our website frequently. You'll never get bored!</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h3>Testimonials</h3>
+        <div class="testimonials">
+
+            <div class="testimonial">
+                <img src="https://nexusbytedev.github.io/Website/assets/media/icons/quote-marks.png">
+                <h4>Mason Milward</h4>
+                <p>"If there was a premium subscription, I'd definitely purchase!"</p>
+            </div>
+
+            <div class="testimonial">
+                <img src="https://nexusbytedev.github.io/Website/assets/media/icons/quote-marks.png">
+                <h4>Jason Harbor</h4>
+                <p>"Don't really like how the website looks but the tools are awesome."</p>
+            </div>
+
+            <div class="testimonial">
+                <img src="https://nexusbytedev.github.io/Website/assets/media/icons/quote-marks.png">
+                <h4>Ellie Kerricks</h4>
+                <p>"How is it possible to have so much all in one place? Excellent!"</p>
+            </div>
+
+            <div class="testimonial">
+                <img src="https://nexusbytedev.github.io/Website/assets/media/icons/quote-marks.png">
+                <h4>Paul Dodds</h4>
+                <p>"Known the developer for a while now, exactly what I'd expect."</p>
+            </div>
+
+            <div class="testimonial">
+                <img src="https://nexusbytedev.github.io/Website/assets/media/icons/quote-marks.png">
+                <h4>Katy Windsor</h4>
+                <p>"Great design and easy to navigate, love it!"</p>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="section">
+        <h3>Contact Us</h3>
+
+        <div class="contact-form">
+            <input type="text" placeholder="Name">
+            <input type="email" placeholder="Email Address">
+            <input type="text" placeholder="Subject">
+            <textarea placeholder="Message" rows="5"></textarea>
+            <button>Send</button>
+        </div>
+
+        <div class="contact-icons-text">Or get in contact another way:</div>
+
+        <div class="contact-icons">
+            <img src="https://nexusbytedev.github.io/Website/assets/media/icons/nexusbyte-chat.png" onclick="location.href='https://nexusbytedev.github.io/Website/main/nexusbyte-chat'">
+            <img src="https://nexusbytedev.github.io/Website/assets/media/icons/gmail.png" onclick="location.href='https://gmail.com'">
+            <img src="https://nexusbytedev.github.io/Website/assets/media/icons/whatsapp.png" onclick="location.href='https://whatsapp.com'">
+        </div>
+    </div>
+
+</div>
+
+<footer>
+    <div style="margin-left:10px;">
+        <img src="https://nexusbytedev.github.io/Website/assets/media/icons/facebook.png" onclick="location.href='https://facebook.com'">
+        <img src="https://nexusbytedev.github.io/Website/assets/media/icons/instagram.png" onclick="location.href='https://instagram.com'">
+        <img src="https://nexusbytedev.github.io/Website/assets/media/icons/x.png" onclick="location.href='https://x.com'">
+    </div>
+
+    <div class="footer-center">© NexusByte Initiative 2025</div>
+
+    <div style="margin-right:10px;">
+        <img src="https://nexusbytedev.github.io/Website/assets/media/icons/tiktok.png" onclick="location.href='https://tiktok.com'">
+        <img src="https://nexusbytedev.github.io/Website/assets/media/icons/discord.png" onclick="location.href='https://discord.com'">
+        <img src="https://nexusbytedev.github.io/Website/assets/media/icons/youtube.png" onclick="location.href='https://youtube.com'">
+    </div>
+</footer>
+
+</body>
+</html>
