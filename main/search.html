@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Search</title>
+    <link rel="icon" type="image/png" href="#">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background: #11111b;
+    color: #ffffff;
+    font-family: Arial, Helvetica, sans-serif;
+    -webkit-tap-highlight-color: transparent;
+}
+
+* {
+    box-sizing: border-box;
+    outline: none;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-thumb { background: #c4a7e7; border-radius: 8px; }
+
+.nav {
+    width: 100%;
+    background: #181825;
+    padding: 12px 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+}
+
+.nav img {
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    transition: 0.2s;
+    object-fit: contain;
+}
+.nav img:hover { filter: brightness(10); }
+
+#menu {
+    width: 100%;
+    background: #313244;
+    position: fixed;
+    top: -100%;
+    left: 0;
+    transition: 0.35s ease;
+    z-index: 9000;
+}
+
+.menu-inner {
+    margin-top: 60px;
+    height: calc(100vh - 60px);
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.menu-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 22px;
+    color: #c4a7e7;
+    margin-bottom: 20px;
+}
+
+.menu-header img {
+    width: 26px;
+    height: 26px;
+    cursor: pointer;
+    transition: 0.2s;
+    object-fit: contain;
+}
+.menu-header img:hover { filter: brightness(10); }
+
+.menu-options {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-grow: 1;
+}
+
+.menu-option {
+    display: flex;
+    align-items: center;
+    padding: 14px 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.menu-option img {
+    width: 24px;
+    height: 24px;
+    margin-right: 12px;
+    object-fit: contain;
+    transition: 0.2s;
+}
+
+.menu-option:hover {
+    background: #c4a7e7;
+    color: #11111b;
+}
+.menu-option:hover img { filter: brightness(10); }
+
+.main {
+    margin-top: 60px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.search-bar {
+    width: 99%;
+    margin: 10px auto 0 auto;
+    background: #181825;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    padding: 12px;
+}
+
+.search-bar input {
+    width: 100%;
+    background: transparent;
+    border: none;
+    color: #ffffff;
+    font-size: 14px;
+}
+
+.search-bar img {
+    width: 22px;
+    height: 22px;
+    cursor: pointer;
+    transition: 0.2s;
+    object-fit: contain;
+}
+.search-bar img:hover { filter: brightness(10); }
+
+.filter-menu {
+    width: 99%;
+    background: #1e1e2e;
+    border-radius: 8px;
+    margin: 8px auto 0 auto;
+    padding: 15px;
+    display: none;
+    flex-direction: column;
+}
+
+.filter-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #c4a7e7;
+    margin-bottom: 10px;
+}
+
+.filter-header img {
+    width: 22px;
+    height: 22px;
+    cursor: pointer;
+    transition: 0.2s;
+    object-fit: contain;
+}
+.filter-header img:hover { filter: brightness(10); }
+
+.filter-option {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.filter-option:hover {
+    background: #c4a7e7;
+    color: #11111b;
+}
+
+.checkbox {
+    width: 18px;
+    height: 18px;
+    border-radius: 6px;
+    border: 2px solid #c4a7e7;
+    transition: 0.2s;
+}
+
+.filter-option.active .checkbox {
+    background: #c4a7e7;
+}
+
+.filter-option:hover .checkbox {
+    border-color: #ffffff;
+}
+
+.filter-option.active:hover .checkbox {
+    background: #ffffff;
+}
+
+.content-body {
+    width: 99%;
+    margin: 10px auto;
+    background: #181825;
+    border-radius: 8px;
+    flex: 1;
+}
+
+footer {
+    width: 100%;
+    background: #181825;
+    padding: 25px 10px;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+}
+
+footer > div:first-child {
+    justify-self: start;
+    display: flex;
+    gap: 10px;
+}
+
+footer > div:last-child {
+    justify-self: end;
+    display: flex;
+    gap: 10px;
+}
+
+footer img {
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    object-fit: contain;
+    transition: 0.2s;
+}
+footer img:hover { filter: brightness(10); }
+
+.footer-center {
+    justify-self: center;
+    text-align: center;
+    white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+    .nav img {
+        width: 24px;
+        height: 24px;
+    }
+
+    .search-bar {
+        padding: 10px;
+    }
+
+    .filter-option {
+        padding: 8px;
+    }
+}
+
+@media (max-width: 600px) {
+    .footer-center {
+        font-size: 11px;
+        max-width: 45vw;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
+</style>
+
+<script>
+function openMenu() {
+    document.body.style.overflow = "hidden";
+    document.getElementById("menu").style.top = "0";
+}
+
+function closeMenu() {
+    document.getElementById("menu").style.top = "-100%";
+    setTimeout(() => {
+        document.body.style.overflow = "auto";
+    }, 350);
+}
+
+function toggleFilters() {
+    const menu = document.getElementById("filters");
+    menu.style.display = menu.style.display === "flex" ? "none" : "flex";
+}
+
+function toggleOption(el) {
+    el.classList.toggle("active");
+}
+</script>
+</head>
+
+<body>
+
+<div class="nav">
+    <img src="https://nexusbytedev.github.io/Website/assets/media/icons/home.png">
+    <img src="https://nexusbytedev.github.io/Website/assets/media/icons/search.png">
+    <img src="https://nexusbytedev.github.io/Website/assets/media/icons/account.png">
+    <img src="https://nexusbytedev.github.io/Website/assets/media/icons/settings.png">
+    <img src="https://nexusbytedev.github.io/Website/assets/media/icons/menu.png" onclick="openMenu()">
+</div>
+
+<div id="menu">
+    <div class="menu-inner">
+        <div class="menu-header">
+            <span>Menu</span>
+            <img src="https://nexusbytedev.github.io/Website/assets/media/icons/close.png" onclick="closeMenu()">
+        </div>
+
+        <div class="menu-options">
+            <div class="menu-option"><img src="https://nexusbytedev.github.io/Website/assets/media/icons/projects.png"><span>Projects</span></div>
+            <div class="menu-option"><img src="https://nexusbytedev.github.io/Website/assets/media/icons/services.png"><span>Services</span></div>
+            <div class="menu-option"><img src="https://nexusbytedev.github.io/Website/assets/media/icons/tools.png"><span>Tools</span></div>
+            <div class="menu-option"><img src="https://nexusbytedev.github.io/Website/assets/media/icons/store.png"><span>Store</span></div>
+            <div class="menu-option"><img src="https://nexusbytedev.github.io/Website/assets/media/icons/downloads.png"><span>Downloads</span></div>
+            <div class="menu-option"><img src="https://nexusbytedev.github.io/Website/assets/media/icons/music.png"><span>Music</span></div>
+            <div class="menu-option"><img src="https://nexusbytedev.github.io/Website/assets/media/icons/entertainment.png"><span>Entertainment</span></div>
+            <div class="menu-option"><img src="https://nexusbytedev.github.io/Website/assets/media/icons/blog.png"><span>Blog</span></div>
+            <div class="menu-option"><img src="https://nexusbytedev.github.io/Website/assets/media/icons/miscellaneous.png"><span>Miscellaneous</span></div>
+            <div class="menu-option"><img src="https://nexusbytedev.github.io/Website/assets/media/icons/information.png"><span>Information</span></div>
+        </div>
+    </div>
+</div>
+
+<div class="main">
+
+    <div class="search-bar">
+        <input type="text" placeholder="Search...">
+        <img src="https://nexusbytedev.github.io/Website/assets/media/icons/filter.png" onclick="toggleFilters()">
+    </div>
+
+    <div class="filter-menu" id="filters">
+        <div class="filter-header">
+            <span>Filters</span>
+            <img src="https://nexusbytedev.github.io/Website/assets/media/icons/close.png" onclick="toggleFilters()">
+        </div>
+
+        <div class="filter-option" onclick="toggleOption(this)">
+            <span>Advanced Search</span>
+            <div class="checkbox"></div>
+        </div>
+        <div class="filter-option" onclick="toggleOption(this)">
+            <span>Include Pages</span>
+            <div class="checkbox"></div>
+        </div>
+        <div class="filter-option" onclick="toggleOption(this)">
+            <span>Include Content</span>
+            <div class="checkbox"></div>
+        </div>
+        <div class="filter-option" onclick="toggleOption(this)">
+            <span>Include Media</span>
+            <div class="checkbox"></div>
+        </div>
+    </div>
+
+    <div class="content-body"></div>
+
+</div>
+
+<footer>
+    <div>
+        <img src="https://nexusbytedev.github.io/Website/assets/media/icons/facebook.png">
+        <img src="https://nexusbytedev.github.io/Website/assets/media/icons/instagram.png">
+        <img src="https://nexusbytedev.github.io/Website/assets/media/icons/x.png">
+    </div>
+
+    <div class="footer-center">© NexusByte Initiative 2025</div>
+
+    <div>
+        <img src="https://nexusbytedev.github.io/Website/assets/media/icons/tiktok.png">
+        <img src="https://nexusbytedev.github.io/Website/assets/media/icons/discord.png">
+        <img src="https://nexusbytedev.github.io/Website/assets/media/icons/youtube.png">
+    </div>
+</footer>
+
+</body>
+</html>
