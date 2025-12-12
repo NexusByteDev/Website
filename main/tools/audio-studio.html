@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Audio Studio</title>
+    <link rel="icon" type="image/png" href="#">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background: #11111b;
+    color: #ffffff;
+    font-family: Arial, Helvetica, sans-serif;
+    -webkit-tap-highlight-color: transparent;
+}
+
+* {
+    box-sizing: border-box;
+    outline: none;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-thumb { background: #c4a7e7; border-radius: 8px; }
+
+.nav {
+    width: 100%;
+    background: #181825;
+    padding: 12px 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+}
+
+.nav img {
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    transition: 0.2s;
+    object-fit: contain;
+}
+.nav img:hover { filter: brightness(10); }
+
+#menu {
+    width: 100%;
+    background: #313244;
+    position: fixed;
+    top: -100%;
+    left: 0;
+    transition: 0.35s ease;
+    z-index: 9000;
+}
+
+.menu-inner {
+    margin-top: 60px;
+    height: calc(100vh - 60px);
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.menu-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 22px;
+    color: #c4a7e7;
+    margin-bottom: 20px;
+}
+
+.menu-header img {
+    width: 26px;
+    height: 26px;
+    cursor: pointer;
+    transition: 0.2s;
+    object-fit: contain;
+}
+.menu-header img:hover { filter: brightness(10); }
+
+.menu-options {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-grow: 1;
+}
+
+.menu-option {
+    display: flex;
+    align-items: center;
+    padding: 14px 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.menu-option img {
+    width: 24px;
+    height: 24px;
+    margin-right: 12px;
+    object-fit: contain;
+    transition: 0.2s;
+}
+
+.menu-option:hover {
+    background: #c4a7e7;
+    color: #11111b;
+}
+.menu-option:hover img { filter: brightness(10); }
+
+.spacer {
+    flex: 1;
+    margin-top: 90px;
+}
+
+footer {
+    width: 100%;
+    background: #181825;
+    padding: 25px 10px;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+}
+
+footer > div:first-child {
+    justify-self: start;
+    display: flex;
+    gap: 10px;
+}
+
+footer > div:last-child {
+    justify-self: end;
+    display: flex;
+    gap: 10px;
+}
+
+footer img {
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    object-fit: contain;
+    transition: 0.2s;
+}
+footer img:hover { filter: brightness(10); }
+
+.footer-center {
+    justify-self: center;
+    text-align: center;
+    white-space: nowrap;
+}
+
+@media (max-width: 600px) {
+    .footer-center {
+        font-size: 11px;
+        max-width: 45vw;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
+</style>
+
+<script>
+function openMenu() {
+    document.body.style.overflow = "hidden";
+    document.getElementById("menu").style.top = "0";
+}
+
+function closeMenu() {
+    document.getElementById("menu").style.top = "-100%";
+    setTimeout(() => {
+        document.body.style.overflow = "auto";
+    }, 350);
+}
+</script>
+</head>
+
+<body>
+
+<div class="nav">
+    <img src="https://nexusbytedev.github.io/Website/assets/media/icons/home.png" onclick="location.href='https://nexusbytedev.github.io/Website/main/landing-page.html'">
+    <img src="https://nexusbytedev.github.io/Website/assets/media/icons/search.png" onclick="location.href='https://nexusbytedev.github.io/Website/main/search.html'">
+    <img src="https://nexusbytedev.github.io/Website/assets/media/icons/account.png" onclick="location.href='https://nexusbytedev.github.io/Website/main/account/login.html'">
+    <img src="https://nexusbytedev.github.io/Website/assets/media/icons/settings.png" onclick="location.href='https://nexusbytedev.github.io/Website/main/settings/general-settings.html'">
+    <img src="https://nexusbytedev.github.io/Website/assets/media/icons/menu.png" onclick="openMenu()">
+</div>
+
+<div id="menu">
+    <div class="menu-inner">
+
+        <div class="menu-header">
+            <span>Menu</span>
+            <img src="https://nexusbytedev.github.io/Website/assets/media/icons/close.png" onclick="closeMenu()">
+        </div>
+
+        <div class="menu-options">
+            <div class="menu-option" onclick="location.href='https://nexusbytedev.github.io/Website/main/projects/explore-projects.html'"><img src="https://nexusbytedev.github.io/Website/assets/media/icons/projects.png"><span>Projects</span></div>
+            <div class="menu-option" onclick="location.href='https://nexusbytedev.github.io/Website/main/services/explore-services.html'"><img src="https://nexusbytedev.github.io/Website/assets/media/icons/services.png"><span>Services</span></div>
+            <div class="menu-option" onclick="location.href='https://nexusbytedev.github.io/Website/main/tools/explore-tools.html'"><img src="https://nexusbytedev.github.io/Website/assets/media/icons/tools.png"><span>Tools</span></div>
+            <div class="menu-option" onclick="location.href='https://nexusbytedev.github.io/Website/main/store/explore-store.html'"><img src="https://nexusbytedev.github.io/Website/assets/media/icons/store.png"><span>Store</span></div>
+            <div class="menu-option" onclick="location.href='https://nexusbytedev.github.io/Website/main/downloads/explore-downloads.html'"><img src="https://nexusbytedev.github.io/Website/assets/media/icons/downloads.png"><span>Downloads</span></div>
+            <div class="menu-option" onclick="location.href='https://nexusbytedev.github.io/Website/main/music/explore-music.html'"><img src="https://nexusbytedev.github.io/Website/assets/media/icons/music.png"><span>Music</span></div>
+            <div class="menu-option" onclick="location.href='https://nexusbytedev.github.io/Website/main/entertainment/explore-entertainment.html'"><img src="https://nexusbytedev.github.io/Website/assets/media/icons/entertainment.png"><span>Entertainment</span></div>
+            <div class="menu-option" onclick="location.href='https://nexusbytedev.github.io/Website/main/blog/nexusbyte-blog.html'"><img src="https://nexusbytedev.github.io/Website/assets/media/icons/blog.png"><span>Blog</span></div>
+            <div class="menu-option" onclick="location.href='https://nexusbytedev.github.io/Website/main/miscellaneous/explore-miscellaneous.html'"><img src="https://nexusbytedev.github.io/Website/assets/media/icons/miscellaneous.png"><span>Miscellaneous</span></div>
+            <div class="menu-option" onclick="location.href='https://nexusbytedev.github.io/Website/main/information/explore-information.html'"><img src="https://nexusbytedev.github.io/Website/assets/media/icons/information.png"><span>Information</span></div>
+        </div>
+
+    </div>
+</div>
+
+<div class="spacer"></div>
+
+<footer>
+    <div>
+        <img src="https://nexusbytedev.github.io/Website/assets/media/icons/facebook.png" onclick="location.href='https://facebook.com'">
+        <img src="https://nexusbytedev.github.io/Website/assets/media/icons/instagram.png" onclick="location.href='https://instagram.com'">
+        <img src="https://nexusbytedev.github.io/Website/assets/media/icons/x.png" onclick="location.href='https://x.com'">
+    </div>
+
+    <div class="footer-center">© NexusByte Initiative 2025</div>
+
+    <div>
+        <img src="https://nexusbytedev.github.io/Website/assets/media/icons/tiktok.png" onclick="location.href='https://tiktok.com'">
+        <img src="https://nexusbytedev.github.io/Website/assets/media/icons/discord.png" onclick="location.href='https://discord.com'">
+        <img src="https://nexusbytedev.github.io/Website/assets/media/icons/youtube.png" onclick="location.href='https://youtube.com'">
+    </div>
+</footer>
+
+</body>
+</html>
