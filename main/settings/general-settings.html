@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>General Settings</title>
+<link rel="icon" type="image/png" href="#">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background: #11111b;
+    color: #ffffff;
+    font-family: Arial, Helvetica, sans-serif;
+    -webkit-tap-highlight-color: transparent;
+}
+
+* {
+    box-sizing: border-box;
+    outline: none;
+}
+
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-thumb { background: #c4a7e7; border-radius: 8px; }
+
+.page {
+    height: 100%;
+    display: flex;
+    padding: 20px;
+    gap: 20px;
+}
+
+.sidebar {
+    width: 260px;
+    background: #181825;
+    border-radius: 8px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.sidebar-header span {
+    color: #c4a7e7;
+    font-size: 18px;
+}
+
+.sidebar-header img {
+    width: 22px;
+    height: 22px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+.sidebar-header img:hover { filter: brightness(10); }
+
+.sidebar-option {
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.2s;
+    margin-bottom: 6px;
+}
+
+.sidebar-option img {
+    width: 22px;
+    height: 22px;
+    margin-right: 10px;
+    transition: 0.2s;
+}
+
+.sidebar-option:hover {
+    background: #c4a7e7;
+    color: #11111b;
+}
+.sidebar-option:hover img { filter: brightness(10); }
+
+.main {
+    flex: 1;
+    background: #181825;
+    border-radius: 8px;
+    padding: 25px;
+}
+
+.main h3 {
+    color: #c4a7e7;
+    margin-bottom: 20px;
+}
+
+.setting-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px;
+    background: #1e1e2e;
+    border-radius: 8px;
+    margin-bottom: 12px;
+}
+
+.checkbox {
+    width: 22px;
+    height: 22px;
+    border-radius: 6px;
+    border: 2px solid #c4a7e7;
+    cursor: pointer;
+    position: relative;
+}
+
+.checkbox input {
+    display: none;
+}
+
+.checkbox span {
+    position: absolute;
+    inset: 0;
+    border-radius: 6px;
+}
+
+.checkbox input:checked + span {
+    background: #c4a7e7;
+}
+
+.popup-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.popup {
+    width: 90%;
+    max-width: 400px;
+    background: #181825;
+    border-radius: 8px;
+    padding: 25px;
+    text-align: center;
+}
+
+.popup h3 {
+    font-weight: bold;
+    color: #c4a7e7;
+}
+
+.popup p {
+    font-size: 14px;
+    margin: 10px 0 20px;
+}
+
+.popup button {
+    background: #313244;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+.popup button:hover {
+    background: #c4a7e7;
+    color: #11111b;
+}
+
+@media (max-width: 900px) {
+    .page {
+        flex-direction: column;
+    }
+    .sidebar {
+        width: 100%;
+    }
+}
+</style>
+
+<script>
+function openPopup() {
+    document.querySelector(".popup-overlay").style.display = "flex";
+}
+function closePopup() {
+    document.querySelector(".popup-overlay").style.display = "none";
+}
+</script>
+</head>
+
+<body>
+
+<div class="page">
+
+    <div class="sidebar">
+
+        <div class="sidebar-header">
+            <span>Settings</span>
+            <img src="https://nexusbytedev.github.io/Website/assets/media/icons/reset.png" onclick="openPopup()">
+        </div>
+
+        <div class="sidebar-option" onclick="location.href='#'"><img src="#"><span>General</span></div>
+        <div class="sidebar-option" onclick="location.href='#'"><img src="#"><span>Customisation</span></div>
+        <div class="sidebar-option" onclick="location.href='#'"><img src="#"><span>Notifications</span></div>
+        <div class="sidebar-option" onclick="location.href='#'"><img src="#"><span>Privacy</span></div>
+        <div class="sidebar-option" onclick="location.href='#'"><img src="#"><span>Video</span></div>
+        <div class="sidebar-option" onclick="location.href='#'"><img src="#"><span>Audio</span></div>
+        <div class="sidebar-option" onclick="location.href='#'"><img src="#"><span>Miscellaneous</span></div>
+        <div class="sidebar-option" onclick="location.href='#'"><img src="#"><span>Developer</span></div>
+
+    </div>
+
+    <div class="main">
+        <h3>General Settings</h3>
+
+        <div class="setting-row">
+            <span>Automatic login</span>
+            <label class="checkbox"><input type="checkbox"><span></span></label>
+        </div>
+
+        <div class="setting-row">
+            <span>Save data & configurations to cloud</span>
+            <label class="checkbox"><input type="checkbox"><span></span></label>
+        </div>
+
+        <div class="setting-row">
+            <span>Earn rewards & discounts</span>
+            <label class="checkbox"><input type="checkbox"><span></span></label>
+        </div>
+
+        <div class="setting-row">
+            <span>Use CookiesV2 (experimental)</span>
+            <label class="checkbox"><input type="checkbox"><span></span></label>
+        </div>
+
+        <div class="setting-row">
+            <span>Only trust this device</span>
+            <label class="checkbox"><input type="checkbox"><span></span></label>
+        </div>
+
+    </div>
+
+</div>
+
+<div class="popup-overlay">
+    <div class="popup">
+        <h3>Reset all settings</h3>
+        <p>Are you sure you'd like to reset all settings?</p>
+        <button onclick="closePopup()">Confirm</button>
+    </div>
+</div>
+
+</body>
+</html>

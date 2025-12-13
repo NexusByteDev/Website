@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign Up</title>
+    <link rel="icon" type="image/png" href="#">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background: #11111b;
+    color: #ffffff;
+    font-family: Arial, Helvetica, sans-serif;
+    -webkit-tap-highlight-color: transparent;
+}
+
+* {
+    box-sizing: border-box;
+    outline: none;
+}
+
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-thumb { background: #c4a7e7; border-radius: 8px; }
+
+.page {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.signup-body {
+    width: 99%;
+    max-width: 440px;
+    background: #181825;
+    border-radius: 8px;
+    padding: 30px;
+}
+
+.signup-body h3 {
+    text-align: center;
+    color: #c4a7e7;
+}
+
+.input-group {
+    margin-top: 25px;
+}
+
+.input-bar {
+    width: 99%;
+    background: #1e1e2e;
+    border-radius: 8px;
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.input-bar img {
+    width: 22px;
+    height: 22px;
+    margin-right: 10px;
+}
+
+.input-bar input,
+.input-bar select {
+    width: 100%;
+    background: transparent;
+    border: none;
+    color: #ffffff;
+    font-size: 14px;
+}
+
+.input-bar select {
+    appearance: none;
+}
+
+.create-button {
+    width: 99%;
+    background: #313244;
+    border: none;
+    border-radius: 8px;
+    padding: 12px;
+    margin-top: 20px;
+    color: #ffffff;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.create-button:hover {
+    background: #c4a7e7;
+    color: #11111b;
+}
+
+@media (max-width: 480px) {
+    .signup-body {
+        padding: 25px 20px;
+    }
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="page">
+
+    <div class="signup-body">
+
+        <h3>Create Account</h3>
+
+        <div class="input-group">
+
+            <div class="input-bar">
+                <img src="https://nexusbytedev.github.io/Website/assets/media/icons/name.png">
+                <input type="text" placeholder="First name or alias">
+            </div>
+
+            <div class="input-bar">
+                <img src="https://nexusbytedev.github.io/Website/assets/media/icons/date-of-birth.png">
+                <input type="text" placeholder="Date of birth (DD/MM/YYYY)">
+            </div>
+
+            <div class="input-bar">
+                <img src="https://nexusbytedev.github.io/Website/assets/media/icons/gender.png">
+                <select>
+                    <option value="" disabled selected>Gender</option>
+                    <option>Male</option>
+                    <option>Female</option>
+                    <option>Non-binary</option>
+                    <option>Prefer not to say</option>
+                </select>
+            </div>
+
+            <div class="input-bar">
+                <img src="https://nexusbytedev.github.io/Website/assets/media/icons/email.png">
+                <input type="email" placeholder="Email address">
+            </div>
+
+            <div class="input-bar">
+                <img src="https://nexusbytedev.github.io/Website/assets/media/icons/password.png">
+                <input type="password" placeholder="Password">
+            </div>
+
+            <div class="input-bar">
+                <img src="https://nexusbytedev.github.io/Website/assets/media/icons/password.png">
+                <input type="password" placeholder="Confirm password">
+            </div>
+
+            <button class="create-button">Create account</button>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>
